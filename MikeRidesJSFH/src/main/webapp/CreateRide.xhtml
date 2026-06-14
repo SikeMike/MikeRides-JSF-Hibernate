@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<!-- PARA PODER USAR EL CALENDARIO -->
+<f:view>
+	<h:head>
+		<title>RIDES - CreateRide</title>
+		<h:outputStylesheet name="css/style.css" />
+	</h:head>
+	<h:body>
+		<div class="form-div">
+			<h2>RIDES - Create Ride</h2>
+			<h:form>
+				<label for="from">Origen:</label>
+				<h:inputText id="from" value="#{createRide.from}" required="true"
+					requiredMessage="Fill origen field">
+					<f:validateRegex pattern="^[A-ZÀ-Ý][a-zA-ZÀ-ÿ\s'-]*$" />
+					<f:ajax event="blur" render="fromMessage" />
+				</h:inputText>
+				<h:message id="fromMessage" for="from" styleClass="error-message" />
+
+				<label for="to">Destino</label>
+				<h:inputText id="to" value="#{createRide.to}" required="true"
+					requiredMessage="Fill destino field">
+					<f:validateRegex pattern="^[A-ZÀ-Ý][a-zA-ZÀ-ÿ\s'-]*$" />
+					<f:ajax event="blur" render="toMessage" />
+				</h:inputText>
+				<h:message id="toMessage" for="to" styleClass="error-message" />
+
+				<label for="price">Precio:</label>
+				<h:inputText id="price" value="#{createRide.price}" required="true">
+					<f:ajax event="blur" render="priceMessage" />
+					<f:validateDoubleRange minimum="1" maximum="1000" />
+				</h:inputText>
+				<h:message id="priceMessage" for="price" styleClass="error-message" />
+
+				<label for="nPlaces">Asientos:</label>
+				<h:inputText id="nPlaces" value="#{createRide.nPlaces}"
+					required="true">
+					<f:ajax event="blur" render="nPlacesMessage" />
+					<f:validateLongRange minimum="1" maximum="7" />
+				</h:inputText>
+				<h:message id="nPlacesMessage" for="nPlaces"
+					styleClass="error-message" />
+
+				<label for="date">Fecha:</label>
+				<p:calendar id="date" value="#{createRide.date}" navigator="true"
+					required="true" pattern="dd/MM/yyyy" showOn="button" />
+
+				<h:commandButton id="createRide" value="Crear Ride"
+					action="#{createRide.createRide}" />
+				<h:button value="Back" outcome="drivermenu" />
+			</h:form>
+
+			<h:messages globalOnly="true" layout="list"
+				styleClass="message-container" />
+		</div>
+	</h:body>
+</f:view>
+</html>

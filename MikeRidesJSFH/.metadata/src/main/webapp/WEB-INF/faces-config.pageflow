@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf17814252098870" configfile="/MikeRidesJSFH/src/main/webapp/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="Index.xhtml" x="122" y="370" id="pf17814262240171" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf17814262240202 pf17814262240213" path="/Index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Register.xhtml" x="338" y="178" id="pf17814262240214" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf17814262240202" path="/Register.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Login.xhtml" x="338" y="562" id="pf17814262240215" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf17814262240213" path="/Login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="DriverMenu.xhtml" x="338" y="946" id="pf17814290972796" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" outlinks="pf17814290972797" inlinks="pf17814391468339" path="/DriverMenu.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="CreateRide.xhtml" x="122" y="946" id="pf17814290972798" referenceLink="//@navigationRule.2/@fromViewId|" outlinks="pf17814391468339" inlinks="pf17814290972797" path="/CreateRide.xhtml"/>
+  <links id="pf17814262240202" target="pf17814262240214" source="pf17814262240171" outcome="register"/>
+  <links id="pf17814262240213" target="pf17814262240215" source="pf17814262240171" outcome="login"/>
+  <links id="pf17814290972797" target="pf17814290972798" source="pf17814290972796" outcome="createride"/>
+  <links id="pf17814391468339" target="pf17814290972796" source="pf17814290972798" outcome="drivermenu"/>
+</pageflow:Pageflow>

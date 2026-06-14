@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<f:view>
+	<h:head>
+		<title>RIDES - QueryRides</title>
+		<h:outputStylesheet name="css/style.css" />
+	</h:head>
+	<h:body>
+		<div class="form-div">
+			<h2>RIDES - Query rides</h2>
+			<h:messages id="mensajes" globalOnly="true" layout="list"
+				styleClass="message-container" style="color:red" />
+			<h:form>
+				<label for="from">Origen:</label>
+				<p:selectOneMenu id="from" value="#{queryRides.from}">
+					<f:selectItem itemLabel="Selecciona Origen" itemValue=""
+						noSelectionOption="true" />
+					<f:selectItems value="#{queryRides.fromCities}" />
+					<p:ajax event="change" listener="#{queryRides.fromCitySelected}"
+						process="@this" update="to" />
+				</p:selectOneMenu>
+				<label for="to">Destino:</label>
+				<p:selectOneMenu id="to" value="#{queryRides.to}">
+					<f:selectItem itemLabel="Selecciona Destino" itemValue=""
+						noSelectionOption="true" />
+					<f:selectItems value="#{queryRides.toCities}" />
+				</p:selectOneMenu>
+				<label for="date">Fecha:</label>
+				<p:calendar id="date" value="#{queryRides.date}" navigator="true"
+					pattern="dd/MM/yyyy" showOn="button" />
+				<p:commandButton value="Buscar" action="#{queryRides.doSearch}"
+					process="@form" update=":resultForm:foundRidesTable :mensajes"
+					styleClass="ui-button" />
+				<h:button value="Back" outcome="DriverMenu" />
+			</h:form>
+		</div>
+		<div class="form-div">
+			<h2>Rides encontrados:</h2>
+			<h:form id="resultForm">
+				<p:dataTable id="foundRidesTable" value="#{queryRides.foundRides}"
+					var="item" border="1" emptyMessage="No rides found.">
+					<p:column headerText="Driver">
+						<h:outputText value="#{item.driver.username}" />
+					</p:column>
+					<p:column headerText="Date">
+						<h:outputText value="#{item.date}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Seats">
+						<h:outputText value="#{item.nPlaces}" />
+					</p:column>
+					<p:column headerText="Price">
+						<h:outputText value="#{item.price} €" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</div>
+
+	</h:body>
+</f:view>
+</html>

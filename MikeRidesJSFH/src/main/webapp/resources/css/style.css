@@ -1,0 +1,222 @@
+/* ==========================================================================
+   Estilos Globales y Base
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    color: #333333;
+    line-height: 1.6;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+h2 {
+    color: #1a365d;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
+}
+
+h3 {
+    color: #4a5568;
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* ==========================================================================
+   Contenedores de Formularios y Menús (.form-div y .form)
+   ========================================================================== */
+.form-div, .form {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 25px;
+}
+
+/* Ampliar el ancho si hay una tabla de PrimeFaces dentro */
+.form-div:has(#resultForm) {
+    max-width: 800px;
+}
+
+/* ==========================================================================
+   Elementos de Formulario nativos de JSF
+   ========================================================================== */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    margin-top: 12px;
+    font-weight: 600;
+    color: #4a5568;
+    font-size: 14px;
+}
+
+/* Inputs de texto nativos de JSF (<h:inputText> y <h:inputSecret>) */
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: #fff;
+    color: #2d3748;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    outline: none;
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.25);
+}
+
+/* ==========================================================================
+   Botones (Nativos JSF e Inputs)
+   ========================================================================== */
+/* Botón principal de acción (<h:commandButton>) */
+input[type="submit"], .ui-button {
+    background-color: #3182ce !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px 20px !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    margin-top: 20px !important;
+    transition: background-color 0.2s !important;
+    text-align: center;
+}
+
+input[type="submit"]:hover, .ui-button:hover {
+    background-color: #2b6cb0 !important;
+}
+
+/* Botones de navegación pasiva (<h:button> o con clase .button) */
+a.button, input[type="button"], .button {
+    display: block;
+    background-color: #edf2f7;
+    color: #4a5568;
+    border: 1px solid #cbd5e0;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    transition: all 0.2s;
+}
+
+a.button:hover, input[type="button"]:hover, .button:hover {
+    background-color: #e2e8f0;
+    color: #2d3748;
+}
+
+/* Especial para el Menu del conductor (para que no se peguen los botones) */
+.form .button, .form input[type="submit"] {
+    margin-bottom: 5px;
+}
+
+/* ==========================================================================
+   Mensajes de Error y Feedback (<h:message> y <h:messages>)
+   ========================================================================== */
+.error-message {
+    color: #e53e3e;
+    font-size: 13px;
+    margin-top: 4px;
+    display: block;
+    font-weight: 500;
+}
+
+.message-container {
+    list-style-type: none;
+    background-color: #ebf8ff;
+    border-left: 4px solid #3182ce;
+    color: #2b6cb0;
+    padding: 12px;
+    border-radius: 4px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+/* Si el contenedor de mensajes contiene errores globales (como el de QueryRides con color:red inline) */
+.message-container[style*="color:red"], .ui-messages-error {
+    background-color: #fff5f5 !important;
+    border-left: 4px solid #e53e3e !important;
+    color: #c53030 !important;
+}
+
+/* ==========================================================================
+   Ajustes y Parches para Componentes de PrimeFaces
+   ========================================================================== */
+/* Menús desplegables (<p:selectOneMenu>) */
+.ui-selectonemenu {
+    width: 100% !important;
+    margin-top: 2px;
+    border-radius: 5px !important;
+    border: 1px solid #cbd5e0 !important;
+}
+.ui-selectonemenu .ui-selectonemenu-label {
+    padding: 8px 12px !important;
+    font-size: 15px;
+}
+
+/* Calendario y DatePicker (<p:calendar>) */
+.ui-calendar {
+    width: 100% !important;
+    margin-top: 2px;
+}
+.ui-calendar input {
+    width: 100% !important;
+    padding: 10px 12px !important;
+    border: 1px solid #cbd5e0 !important;
+    border-radius: 5px !important;
+    font-size: 15px !important;
+}
+
+/* Tabla de datos (<p:dataTable>) */
+.ui-datatable {
+    margin-top: 15px;
+    font-size: 14px;
+}
+.ui-datatable th {
+    background-color: #f7fafc !important;
+    color: #2d3748 !important;
+    font-weight: 600 !important;
+    padding: 12px !important;
+    border: 1px solid #e2e8f0 !important;
+}
+.ui-datatable td {
+    padding: 12px !important;
+    border: 1px solid #e2e8f0 !important;
+}
+.ui-datatable-empty-message td {
+    text-align: center;
+    color: #a0aec0;
+    font-style: italic;
+    padding: 20px !important;
+}
